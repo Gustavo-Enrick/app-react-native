@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Picker } from 'react-native-web';
+import { StyleSheet, Text, View,ScrollView } from 'react-native';
+import { Picker} from 'react-native-web';
 import CustomButton from './components/custom-button/CustomButtom';
 import TextInputBox from './text-imput-text/TextImputText';
 import Choose from './actions/Choose';
+import Logo from './components/Logo/Logo';
 
 export default function App() {
   const [selectedOption, setSelectedOption] = useState('soma');
@@ -13,7 +14,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="auto"/>
+      <ScrollView contentContainerStyle={styles.container}>
+      <Logo/>
       <Text style={styles.title}>Soma de Dois Números</Text>
       <TextInputBox
         value={number1}
@@ -38,13 +41,14 @@ export default function App() {
           <Picker.Item label="Multiplicação" value="mult" />
           <Picker.Item label="Divisão" value="div"/>
       </Picker>
+
       <CustomButton
-        title="Somar"
+        title="Realizar Operação"
         onPress={() => Choose(selectedOption,number1, number2)}
         style={styles.button}
       />
-
       <Text></Text>
+      </ScrollView>
     </View>
   );
 }
@@ -64,5 +68,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 50,
     marginBottom: 20,
+    textAlign: 'center'
   },
 });
